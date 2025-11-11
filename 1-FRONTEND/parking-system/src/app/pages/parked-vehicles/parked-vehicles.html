@@ -1,0 +1,51 @@
+<div class="parked-container">
+  <h1>Vehículos Estacionados</h1>
+  
+  @if (vehicles.length === 0) {
+    <div class="empty-state">
+      <p class="empty-icon">🚗</p>
+      <h2>No hay vehículos estacionados</h2>
+      <p>Los vehículos registrados aparecerán aquí</p>
+    </div>
+  } @else {
+    <div class="vehicles-grid">
+      @for (vehicle of vehicles; track vehicle.id) {
+        <div class="vehicle-card">
+          <div class="vehicle-header">
+            <h3>{{ vehicle.licensePlate }}</h3>
+            <span class="vehicle-type-badge">{{ vehicle.vehicleType }}</span>
+          </div>
+          
+          <div class="vehicle-details">
+            <p><strong>Propietario:</strong> {{ vehicle.owner }}</p>
+            <p><strong>Espacio:</strong> {{ vehicle.parkingSpot }}</p>
+            <p><strong>Hora de entrada:</strong> {{ vehicle.entryTime | date:'short' }}</p>
+            <p><strong>Tiempo estacionado:</strong> {{ getTimeParked(vehicle.entryTime) }}</p>
+          </div>
+          
+          <button (click)="openExitModal(vehicle)" class="btn-exit">
+            Registrar Salida
+          </button>
+        </div>
+      }
+    </div>
+  }
+
+  @if (showExitModal && selectedVehicle) {
+    <div class="modal-overlay" (click)="closeExitModal()">
+      <div class="modal-content" (click)="$event.stopPropagation()">
+        <h2>Confirmar Salida</h2>
+        <div class="modal-body">
+          <p><strong>Placa:</strong> {{ selectedVehicle.licensePlate }}</p>
+          <p><strong>Propietario:</strong> {{ selectedVehicle.owner }}</p>
+          <p><strong>Tiempo estacionado:</strong> {{ getTimeParked(selectedVehicle.entryTime) }}</p>
+          <p class="warning-text">¿Está seguro de registrar la salida de este vehículo?</p>
+        </div>
+        <div class="modal-actions">
+          <button (click)="exitVehicle()" class="btn btn-confirm">Confirmar</button>
+          <button (click)="closeExitModal()" class="btn btn-cancel">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

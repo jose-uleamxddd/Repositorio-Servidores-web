@@ -1,0 +1,77 @@
+<div class="entry-container">
+  <h1>Registrar Entrada de Vehículo</h1>
+  
+  @if (submitted) {
+    <div class="success-message">
+      <p>✅ {{ message }}</p>
+      <p>Redirigiendo a vehículos estacionados...</p>
+    </div>
+  } @else {
+    <form (ngSubmit)="onSubmit()" #vehicleForm="ngForm" class="entry-form">
+      <div class="form-group">
+        <label for="licensePlate">Placa del Vehículo *</label>
+        <input 
+          type="text" 
+          id="licensePlate" 
+          [(ngModel)]="vehicle.licensePlate" 
+          name="licensePlate"
+          required
+          placeholder="ABC-1234"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="owner">Propietario *</label>
+        <input 
+          type="text" 
+          id="owner" 
+          [(ngModel)]="vehicle.owner" 
+          name="owner"
+          required
+          placeholder="Nombre completo"
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="vehicleType">Tipo de Vehículo *</label>
+        <select 
+          id="vehicleType" 
+          [(ngModel)]="vehicle.vehicleType" 
+          name="vehicleType"
+          class="form-input"
+        >
+          <option value="sedan">Sedán</option>
+          <option value="suv">SUV</option>
+          <option value="truck">Camioneta</option>
+          <option value="motorcycle">Motocicleta</option>
+          <option value="van">Van</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="parkingSpot">Espacio de Estacionamiento *</label>
+        <input 
+          type="number" 
+          id="parkingSpot" 
+          [(ngModel)]="vehicle.parkingSpot" 
+          name="parkingSpot"
+          min="1"
+          max="50"
+          required
+          class="form-input"
+        />
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" [disabled]="!vehicleForm.form.valid" class="btn btn-submit">
+          Registrar Entrada
+        </button>
+        <button type="button" (click)="resetForm()" class="btn btn-reset">
+          Limpiar Formulario
+        </button>
+      </div>
+    </form>
+  }
+</div>

@@ -1,0 +1,50 @@
+<div class="history-container">
+  <h1>Historial de Vehículos</h1>
+  
+  @if (history.length === 0) {
+    <div class="empty-state">
+      <p class="empty-icon">📜</p>
+      <h2>No hay historial disponible</h2>
+      <p>El historial de vehículos aparecerá aquí después de registrar salidas</p>
+    </div>
+  } @else {
+    <div class="history-table-container">
+      <table class="history-table">
+        <thead>
+          <tr>
+            <th>Placa</th>
+            <th>Propietario</th>
+            <th>Tipo</th>
+            <th>Espacio</th>
+            <th>Entrada</th>
+            <th>Salida</th>
+            <th>Duración</th>
+            <th>Tarifa</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (record of history; track record.id) {
+            <tr>
+              <td class="plate-cell">{{ record.licensePlate }}</td>
+              <td>{{ record.owner }}</td>
+              <td class="type-cell">{{ record.vehicleType }}</td>
+              <td class="spot-cell">{{ record.parkingSpot }}</td>
+              <td>{{ record.entryTime | date:'short' }}</td>
+              <td>{{ record.exitTime | date:'short' }}</td>
+              <td class="duration-cell">{{ getDuration(record.entryTime, record.exitTime) }}</td>
+              <td class="fee-cell">{{ record.fee | currency }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="summary-section">
+      <div class="summary-card">
+        <h3>Resumen</h3>
+        <p><strong>Total de registros:</strong> {{ history.length }}</p>
+        <p><strong>Ingresos totales:</strong> {{ getTotalRevenue() | currency }}</p>
+      </div>
+    </div>
+  }
+</div>

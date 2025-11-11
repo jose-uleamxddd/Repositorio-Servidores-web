@@ -1,0 +1,50 @@
+<div class="home-container">
+  <div class="welcome-section">
+    <h1>Bienvenido al Sistema de Parqueo</h1>
+    <p>Gestiona eficientemente el estacionamiento de vehículos</p>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon"></div>
+      <h3>{{ stats.currentVehicles }}</h3>
+      <p>Vehículos Actuales</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon"></div>
+      <h3>{{ stats.totalVehicles }}</h3>
+      <p>Total Registrados</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon"></div>
+      <h3>{{ stats.availableSpots }}</h3>
+      <p>Espacios Disponibles</p>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon"></div>
+      <h3 class="dollar-sign">{{ stats.totalRevenue | currency }}</h3>
+      <p>Ingresos Totales</p>
+    </div>
+  </div>
+
+  <div class="quick-actions">
+    <h2>Acciones Rápidas</h2>
+    <div class="action-buttons">
+      <a routerLink="/entry" class="action-btn btn-primary">
+        <span class="btn-icon"></span>
+        Registrar Entrada
+      </a>
+      <a routerLink="/parked" class="action-btn btn-secondary">
+        <span class="btn-icon"></span>
+        Ver Estacionados
+      </a>
+      <a routerLink="/history" class="action-btn btn-tertiary">
+        <span class="btn-icon"></span>
+        Ver Historial
+      </a>
+    </div>
+  </div>
+</div>

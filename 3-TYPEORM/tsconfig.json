@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",           // Mejor para Node + TypeORM
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "strict": true,
+    "sourceMap": true,
+    "declaration": false,
+    "skipLibCheck": true,
+    "isolatedModules": false,       // debe ser false para TypeORM
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "experimentalDecorators": true, // NECESARIO para decoradores
+    "emitDecoratorMetadata": true   // NECESARIO para TypeORM
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
